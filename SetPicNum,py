@@ -1,0 +1,98 @@
+# -*- coding: utf-8 -*-
+
+import ConfigParser
+from Tkinter import *
+
+
+def setpicnum():
+	global score
+	cf = ConfigParser.ConfigParser()
+	cf.read("ROI.ini")
+	score = cf.getint("R1","pic_num")
+	win=Tk()
+	win.attributes('-fullscreen', True) # 全螢幕
+	win.title(u"調整數量")
+	def clickNumber1():
+		clickNumber(1)
+	def clickNumber2():
+		clickNumber(2)
+	def clickNumber3():
+		clickNumber(3)
+	def clickNumber4():
+		clickNumber(4)
+	def clickNumber5():
+		clickNumber(5)
+	def clickNumber6():
+		clickNumber(6)
+	def clickNumber7():
+		clickNumber(7)
+	def clickNumber8():
+		clickNumber(8)
+	def clickNumber9():
+		clickNumber(9)
+	def clickNumber0():
+		clickNumber(0)
+	def click_zero():
+		clickNumber('zero')
+	def clickNumber(number):
+		global score
+		if number == 'zero':
+			score = 0
+		else:
+			score = score*10 + number
+		if score > 9999:
+			score = 9999
+		label.configure(text=str(score))
+		config = ConfigParser.ConfigParser()
+		config.optionxform = str
+		config.read('ROI.ini')
+		config.set("R1", "pic_num", str(score))
+		config.write(open('ROI.ini', 'wb'))
+	def quit2():
+		win.destroy()
+	button1=Button(win, text="   1   ", command=clickNumber1)
+	button2=Button(win, text="   2   ", command=clickNumber2)
+	button3=Button(win, text="   3   ", command=clickNumber3)
+	button4=Button(win, text="   4   ", command=clickNumber4)
+	button5=Button(win, text="   5   ", command=clickNumber5)
+	button6=Button(win, text="   6   ", command=clickNumber6)
+	button7=Button(win, text="   7   ", command=clickNumber7)
+	button8=Button(win, text="   8   ", command=clickNumber8) 
+	button9=Button(win, text="   9   ", command=clickNumber9) 
+	button0=Button(win, text="   0   ", command=clickNumber0) 
+	button_zero=Button(win, text="歸零", command=click_zero) 
+	button_quit=Button(win, text="離開", command=quit2) 
+	button1["font"] = ("Times",40,'bold italic')
+	button2["font"] = ("Times",40,'bold italic')
+	button3["font"] = ("Times",40,'bold italic')
+	button4["font"] = ("Times",40,'bold italic')
+	button5["font"] = ("Times",40,'bold italic')
+	button6["font"] = ("Times",40,'bold italic')
+	button7["font"] = ("Times",40,'bold italic')
+	button8["font"] = ("Times",40,'bold italic')
+	button9["font"] = ("Times",40,'bold italic')
+	button0["font"] = ("Times",40,'bold italic')
+	button_zero["font"] = ("Times",40,'bold italic')
+	button_quit["font"] = ("Times",40,'bold italic')
+	ss=Label(win, text="相片 數量:")
+	ss["font"] = ("Times",50,'bold italic')
+	ss.grid(row=0,column=1)
+	label=Label(win, text=str(score))
+	label["font"] = ("Times",50,'bold italic')
+	label.grid(row=0,column=2)
+	button1.grid(row=3,column=2)
+	button2.grid(row=3,column=3)
+	button3.grid(row=3,column=4)
+	button4.grid(row=2,column=2)
+	button5.grid(row=2,column=3)
+	button6.grid(row=2,column=4)
+	button7.grid(row=1,column=2)
+	button8.grid(row=1,column=3)
+	button9.grid(row=1,column=4)
+	button0.grid(row=4,column=2)
+	button_zero.grid(row=4,column=3)
+	button_quit.grid(row=4,column=4)
+	win.mainloop()
+
+if __name__ == "__main__":
+	setpicnum()
