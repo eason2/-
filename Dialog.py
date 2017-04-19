@@ -16,4 +16,4 @@ def show(mytext = 'Quit'):
     win.mainloop()
 
 if __name__ == "__main__":
-	show("麥克風測試\n測試")
+	show("測試\n測試")
